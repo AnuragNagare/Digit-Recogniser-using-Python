@@ -1,9 +1,34 @@
-The  Python code uses Keras to load a pre-trained model for recognizing handwritten digits from the MNIST dataset. The program opens a GUI window that allows the user to draw a digit using the mouse. When the "Recognise" button is clicked, the program captures an image of the drawing and uses the pre-trained model to predict which digit was drawn. The predicted digit and its corresponding accuracy are displayed in a label on the GUI window.
+#Handwritten Digit Recognition App using Keras and Tkinter
+This code demonstrates a simple application for recognizing handwritten digits using a pre-trained Keras model. The user can draw a digit on a canvas using the mouse, and the application will predict the digit based on the drawn image.
 
-The program uses the tkinter library for creating the GUI and the win32gui library for capturing the image of the drawing. The PIL library is used for manipulating the image before passing it to the model for prediction.
+#Requirements
+Python 3.x
+Keras
+Tkinter
+win32gui
+PIL
 
-The program defines a function predict_digit that resizes the image to 28x28 pixels, converts it to grayscale, reshapes it to match the input of the pre-trained model, and finally normalizes the pixel values. The model is then used to predict the class of the image, and the function returns the predicted digit and its corresponding accuracy.
+#Usage
+Clone the repository or download the script directly.
+Make sure you have the pre-trained model file (mnist.h5) available in the same directory as the script.
+Install the required dependencies by running the following command:
+Copy code
+pip install keras tensorflow pillow
+Run the script using the following command:
+Copy code
+python digit_recognition_app.py
+A new window will open, displaying a canvas for drawing.
+Use the mouse to draw a digit on the canvas.
+Click the "Recognize" button to predict the drawn digit.
+The predicted digit and the prediction accuracy will be displayed.
+Click the "Clear" button to clear the canvas and draw a new digit.
+Close the window to exit the application.
 
-The App class defines the GUI elements and binds them to functions that handle user input. The classify_handwriting function captures the image of the drawing and uses the predict_digit function to classify the digit. The draw_lines function handles mouse input and draws a black circle on the canvas to represent the digit being drawn.
-
-Overall, the program demonstrates the use of a pre-trained machine learning model for recognizing handwritten digits and provides a user-friendly interface for testing the model.
+#How It Works
+The script loads the pre-trained Keras model using load_model.
+The predict_digit function takes the drawn image as input, preprocesses it, and uses the model to predict the digit.
+The Tkinter application is created, which includes a canvas for drawing, a label to display the prediction, and buttons for recognizing and clearing the canvas.
+When the user draws on the canvas, the draw_lines function is called, which creates an oval shape at the mouse coordinates to represent the drawn digit.
+Clicking the "Recognize" button grabs the canvas's image using ImageGrab.grab, sends it to the predict_digit function, and updates the label with the predicted digit and accuracy.
+Clicking the "Clear" button deletes all the drawn shapes from the canvas.
+Closing the window terminates the application.
